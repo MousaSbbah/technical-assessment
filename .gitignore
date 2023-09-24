@@ -42,6 +42,10 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Cucumber directories
+reports/cucumber-htmlreport.html/
+cucumber-json/
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
