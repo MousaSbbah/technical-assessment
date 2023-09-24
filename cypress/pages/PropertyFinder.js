@@ -42,9 +42,9 @@ class PropertyFinder {
 
   filterByPriceRange (minimumPrice, maximumPrice) {
     cy.get(this.priceRangeDropdown).click();
-    cy.get(this.minimumPriceTextField).click();
+    cy.get(this.minimumPriceTextField).click({waitForAnimations: false});
     cy.contains(this.pricesOptions, minimumPrice).click({waitForAnimations: false});
-    cy.get(this.maximumPriceTextField).click();
+    cy.get(this.maximumPriceTextField).click({waitForAnimations: false});
     cy.contains(this.pricesOptions, maximumPrice).click({waitForAnimations: false});
     cy.wait(500);
     cy.get(this.priceRangeOverRelay).click();
