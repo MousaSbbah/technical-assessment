@@ -16,8 +16,8 @@ Given("A user visit the property finder home page", () => {
 });
 
 When("A user select the {string} option from category", (category) => {
-  cy.get(propertyFinder.categoryDropdown).click();
-  cy.contains(propertyFinder.categoryOption, category).click();
+  propertyFinder.getElementByLocator(propertyFinder.categoryDropdown).click();
+  propertyFinder.getElementByLocatorAndText(propertyFinder.categoryOption, category).click();
 });
 
 When(
@@ -77,23 +77,16 @@ And("Verify the details of the first property in the searched result from the AP
         propertyFinder.getElementByLocator(propertyFinder.propertiesListCards).first().as("firstPropertyCard");
 
         propertyFinder.getSavedElement("firstPropertyCard").find("h2").should("have.text", firstCardData.title);
-        propertyFinder.getSavedElement("firstPropertyCard").find('[data-testid="property-card-location"]').should("have.text", firstCardData.location.full_name);
-        propertyFinder.getSavedElement("firstPropertyCard").find('[data-testid="property-card-price"]')
-          .invoke("text")
-          .should(
-            "include",
-            `${firstCardData.price.value.toLocaleString()} ${
-              firstCardData.price.currency
-            }`
-          );
+        propertyFinder.getSavedElement("firstPropertyCard").find(propertyFinder.propertyCardLocation).should("have.text", firstCardData.location.full_name);
+        propertyFinder.getSavedElement("firstPropertyCard").find(propertyFinder.propertyCardPrice).invoke("text").should("include", propertyFinder.propertyPriceText(firstCardData.price.value, firstCardData.price.currency));
           propertyFinder.getSavedElement("firstPropertyCard")
-          .find('[data-testid="property-card-spec-area"]')
+          .find(propertyFinder.propertyCardSize)
           .should(
             "have.text",
-            ` ${firstCardData.size.value} ${firstCardData.size.unit}`
+            propertyFinder.propertySizeText(firstCardData.size.value, firstCardData.size.unit)
           );
           propertyFinder.getSavedElement("firstPropertyCard")
-          .find('[data-testid="property-card-spec-bathroom"]')
+          .find(propertyFinder.propertyBathroomsCount)
           .should("have.text", ` ${firstCardData.bathrooms}`);
       });
   }
