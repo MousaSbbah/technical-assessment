@@ -56,14 +56,35 @@ class PropertyFinder {
 	totalSearchResultCount = '[aria-label="Search results count"]';
 
 	// Methods
+
+	/**
+ 	* Spies on a network call using Cypress' `cy.intercept` and saves it with an alias.
+ 	*
+ 	* @param {string} call - The network call to intercept, e.g., 'GET /api/data'.
+ 	* @param {string} alias - The alias to assign to the intercepted call.
+ 	* @returns {void}
+ 	*/
 	spyAndSaveCall (call, alias) {
 		cy.intercept(call).as(alias);
 	}
 
+	/**
+ 	* Navigates to the specified URL using Cypress' `cy.visit`.
+ 	*
+ 	* @param {string} path - The URL path to navigate to.
+ 	* @returns {void}
+ 	*/
 	go (path) {
 		cy.visit(path);
 	}
 
+	/**
+	 * Filters properties by price range.
+	 *
+	 * @param {string} minimumPrice - The minimum price value.
+	 * @param {string} maximumPrice - The maximum price value.
+	 * @returns {void}
+	 */
 	filterByPriceRange (minimumPrice, maximumPrice) {
 		cy.get(this.priceRangeDropdown).click();
 		cy.get(this.minimumPriceTextField).click({waitForAnimations: false});
@@ -75,17 +96,42 @@ class PropertyFinder {
 		cy.get(this.findButton).click();
 	}
 
+	/**
+ 	* Retrieves an element on the page using the specified locator.
+ 	*
+ 	* @param {string} locator - The locator string for the element, such as a CSS selector or XPath.
+ 	* @returns {Chainable<JQuery<HTMLElement>>} - A Cypress chainable object representing the located element.
+ 	*/
 	getElementByLocator = (locator) => cy.get(locator);
 
-
+	/**
+ 	* Retrieves an element on the page that contains the specified text using the provided locator.
+ 	*
+ 	* @param {string} locator - The locator string for the element, such as a CSS selector or XPath.
+ 	* @param {string} text - The text to search for within the located element.
+ 	* @returns {Chainable<JQuery<HTMLElement>>} - A Cypress chainable object representing the located element.
+ 	*/
 	getElementByLocatorAndText (locator, text) {
 		return cy.contains(locator, text);
 	}
 
+	/**
+ 	* Retrieves saved data from a Cypress network intercept using the specified alias and data path.
+ 	*
+ 	* @param {string} alias - The alias assigned to the intercepted network call.
+ 	* @param {string} dataPath - The path to the desired data within the intercepted response body.
+ 	* @returns {Chainable} - A Cypress chainable object representing the retrieved data.
+ 	*/
 	getSavedDataFromIntercept (alias, dataPath){
 		return cy.get(`@${alias}`).its(`response.body${dataPath}`);
 	}
 
+	/**
+ 	* Retrieves a saved element using the specified alias from Cypress' `cy.get`.
+ 	*
+ 	* @param {string} alias - The alias assigned to the saved element.
+ 	* @returns {Chainable<JQuery<HTMLElement>>} - A Cypress chainable object representing the saved element.
+ 	*/
 	getSavedElement (alias){
 		return cy.get(`@${alias}`);
 	}
