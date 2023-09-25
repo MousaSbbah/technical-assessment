@@ -15,8 +15,6 @@ Feature: Test Feature
     Then Check the total number of results from the API response matches the total displayed property results.
     And Verify the details of the first property in the searched result from the API response
 
-
-
   Scenario: Search for property by location
     Given A user visit the property finder home page
     When A user search for the "Bahrain Bay" location

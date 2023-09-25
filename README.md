@@ -70,8 +70,33 @@ To execute the Cypress tests and generate an HTML report, follow these steps:
 3. After the report generation is complete, you can find the report in the reports/cucumber-htmlreport.html. [here](./reports/cucumber-htmlreport.html)
 4. Open the generated HTML report in a web browser.
 
+## Continuous Integration with GitHub Actions
+
+We have set up Continuous Integration (CI) using GitHub Actions to ensure that our Cypress tests are automatically executed for every push to this repository. Here's how it works:
+
+1. **Test Execution**: Whenever you push changes to this repository, GitHub Actions will automatically trigger our Cypress tests. These tests will run in a controlled environment to validate our application's functionality.
+
+2. **HTML Report Generation**: After the tests are completed, a detailed HTML report is generated, summarizing the test results, including passed and failed scenarios.
+
+3. **Artifact Storage**: The HTML report is then uploaded to our artifact storage on GitHub, making it accessible for review.
+
+### Accessing the Test Report
+
+To access the Cypress test report:
+
+1. After pushing your changes, wait for the GitHub Actions workflow to complete. You can monitor the progress in the "Actions" tab of this repository.
+
+2. Once the workflow is finished, you can find the HTML report as an artifact.
+
+3. Click on the "Artifacts" tab in the workflow run details.
+
+4. Download the HTML report file to your local machine.
+
+5. Open the downloaded HTML file in your browser to view the test results
 
 ## Additional Notes
 
 - **[Test Summery Reports](./Test-Summery-Report.md)**
-- During the assessment, it was identified that one of the provided scenarios had been written for [emirati website](https://www.propertyfinder.ae/), while the associated link was intended for bahrain. To ensure alignment with the assessment requirements, the scenario's requirement was modified to match the [bahraini version](https://www.propertyfinder.bh/).
+- Eslint has been configured for the repository ✔️
+- ⚠️**Important**⚠️: During the assessment, it was identified that one of the provided scenarios had been written for [emirati website](https://www.propertyfinder.ae/), while the associated link was intended for bahrain. To ensure alignment with the assessment requirements, the scenario's requirement was modified to match the [bahraini version](https://www.propertyfinder.bh/).
+

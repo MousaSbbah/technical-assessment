@@ -21,7 +21,7 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
         with:
-          version: '117'
+          chrome-version: '117'
 
       - name: Install Dependencies
         run: npm install
