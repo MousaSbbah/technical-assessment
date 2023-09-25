@@ -54,6 +54,8 @@ If you prefer to run the tests headless (i.e., without the GUI), you can use the
 ```bash
 npm run cy:run
 ```
+**Note**: To use headless on non-Windows OS with browsers other than Chrome, customize the user agent in the `cypress.config.js` configuration using your specific user agent string obtained from a website like [useragents.me](https://www.useragents.me/).
+
 
 ## Generate HTML Report
 To execute the Cypress tests and generate an HTML report, follow these steps:
